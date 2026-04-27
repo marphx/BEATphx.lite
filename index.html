@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
 <title>BEATphx | Designed by Mario Garcia</title>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/lamejs@1.2.1/lame.min.js"></script>
 <style>
 :root{
@@ -95,12 +96,33 @@ button{
 @keyframes spin{to{transform:rotate(360deg)}}
 .phxBird{
   position:absolute;
-  inset:14%;
+  inset:11%;
   border-radius:50%;
-  background:var(--gold);
-  clip-path:polygon(50% 0,62% 22%,86% 12%,73% 36%,100% 45%,72% 53%,88% 78%,58% 63%,50% 100%,42% 63%,12% 78%,28% 53%,0 45%,27% 36%,14% 12%,38% 22%);
-  filter:drop-shadow(0 0 28px rgba(240,184,74,.56));
-  opacity:.88;
+  background:
+    radial-gradient(circle,rgba(0,0,0,.12) 0 10%,transparent 10.5%),
+    conic-gradient(from 0deg,var(--gold),#ffd982,var(--gold),#b87922,var(--gold));
+  filter:drop-shadow(0 0 32px rgba(240,184,74,.68));
+  opacity:.92;
+}
+.phxBird:before{
+  content:"";
+  position:absolute;
+  inset:14%;
+  background:#120b08;
+  clip-path:polygon(
+    50% 2%,58% 25%,79% 10%,69% 36%,96% 32%,74% 51%,
+    91% 73%,62% 63%,50% 97%,38% 63%,9% 73%,26% 51%,
+    4% 32%,31% 36%,21% 10%,42% 25%
+  );
+  opacity:.82;
+}
+.phxBird:after{
+  content:"";
+  position:absolute;
+  inset:25%;
+  border:9px solid rgba(18,11,8,.82);
+  border-radius:50%;
+  box-shadow:0 0 0 8px rgba(240,184,74,.23) inset;
 }
 .homeCard{
   position:relative;
@@ -117,7 +139,7 @@ button{
 }
 h1{
   margin:0;
-  font-family:Georgia,"Times New Roman",serif;
+  font-family:'UnifrakturMaguntia', Georgia, "Times New Roman", serif;
   font-weight:900;
   font-size:clamp(3.2rem,13vw,8rem);
   letter-spacing:.03em;
@@ -239,6 +261,7 @@ h1{
   display:none;
   grid-template-rows:auto 1fr auto;
   min-height:100dvh;
+  height:100dvh;
   background:
     radial-gradient(circle at 20% 10%,rgba(255,123,55,.24),transparent 33%),
     radial-gradient(circle at 80% 88%,rgba(80,215,255,.12),transparent 28%),
@@ -258,7 +281,7 @@ h1{
   align-items:center;
   justify-content:space-between;
   gap:10px;
-  padding:10px max(10px,env(safe-area-inset-left)) 8px max(10px,env(safe-area-inset-right));
+  padding:8px max(10px,env(safe-area-inset-left)) 7px max(10px,env(safe-area-inset-right));
   background:rgba(0,0,0,.32);
   border-bottom:1px solid rgba(255,255,255,.08);
   backdrop-filter:blur(10px);
@@ -274,11 +297,14 @@ h1{
 .main{
   position:relative;z-index:2;
   display:grid;
-  grid-template-columns:minmax(240px,330px) minmax(310px,1fr) minmax(250px,330px);
-  gap:12px;
-  padding:12px;
+  grid-template-columns:minmax(210px,300px) minmax(320px,720px) minmax(210px,300px);
+  justify-content:center;
+  align-content:center;
+  gap:10px;
+  padding:10px;
   min-height:0;
-  overflow:auto;
+  height:100%;
+  overflow:hidden;
 }
 .panel{
   background:var(--panel);
@@ -296,14 +322,14 @@ h1{
 }
 .bankBtn small{display:block;color:#cfc4b0;font-weight:600;margin-top:2px}
 .bankBtn.active{outline:2px solid var(--gold);background:rgba(240,184,74,.17)}
-.padArea{display:flex;flex-direction:column;gap:12px}
+.padArea{display:flex;flex-direction:column;gap:10px;align-self:center}
 .padGrid{
   display:grid;
-  grid-template-columns:repeat(3,minmax(86px,1fr));
-  gap:12px;
+  grid-template-columns:repeat(3,minmax(82px,1fr));
+  gap:10px;
 }
 .pad{
-  min-height:104px;
+  min-height:92px;
   border-radius:20px;
   background:
     linear-gradient(145deg,rgba(255,255,255,.16),rgba(255,255,255,.04)),
@@ -386,6 +412,94 @@ select,input[type=text]{
   .dj{bottom:106px;right:1%;transform:scale(.8)}
   .sprayerGame{bottom:104px;left:1%;transform:scale(.8)}
 }
+
+.centerTransport{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(78px,1fr));
+  gap:8px;
+  margin-top:10px;
+}
+.centerTransport .pill{
+  text-align:center;
+  padding:12px 8px;
+  border-radius:16px;
+}
+.settingsOpen{
+  background:linear-gradient(135deg,rgba(240,184,74,.95),rgba(255,123,55,.95));
+  color:#151008;
+}
+#settingsModal{
+  position:fixed;
+  inset:0;
+  z-index:70;
+  display:none;
+  place-items:center;
+  background:rgba(0,0,0,.62);
+  backdrop-filter:blur(8px);
+  padding:14px;
+}
+#settingsModal.show{display:grid}
+.settingsBox{
+  width:min(96vw,860px);
+  max-height:88dvh;
+  overflow:auto;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:24px;
+  background:linear-gradient(180deg,rgba(17,15,22,.98),rgba(6,6,10,.98));
+  padding:16px;
+  box-shadow:0 28px 90px rgba(0,0,0,.58),0 0 50px rgba(240,184,74,.14);
+}
+.settingsHead{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:12px;
+}
+.settingsHead h3{margin:0;color:var(--gold);font-family:Georgia,serif;font-size:1.55rem}
+.settingsGrid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(240px,1fr));
+  gap:10px;
+}
+.compactSide{
+  max-height:calc(100dvh - 170px);
+  overflow:hidden;
+}
+.compactSide .bankGrid{gap:6px}
+.compactSide .bankBtn{padding:9px 10px;border-radius:12px}
+.compactSide .bankBtn small{font-size:.68rem}
+.micCompact .smallGrid{grid-template-columns:repeat(2,1fr)}
+@media(max-width:900px){
+  .main{
+    grid-template-columns:1fr;
+    align-content:start;
+    overflow:hidden;
+    padding:8px 8px 112px;
+  }
+  .compactSide{
+    max-height:none;
+  }
+  .main aside.panel:first-child{
+    order:2;
+    max-height:142px;
+    overflow:auto;
+  }
+  .padArea{order:1}
+  .main aside.panel:last-child{
+    order:3;
+  }
+  .main > aside.panel:last-child{
+    display:none;
+  }
+  .centerTransport{
+    grid-template-columns:repeat(3,1fr);
+  }
+  .pad{min-height:78px}
+  .settingsGrid{grid-template-columns:1fr}
+  #meterCanvas{width:62vw;height:62px}
+}
+
 </style>
 </head>
 <body>
@@ -410,7 +524,7 @@ select,input[type=text]{
     <p><b>BEATphx</b> is a simple browser beat machine. Pick a bank, tap the six pads, record a loop, then export your beat to your phone files.</p>
     <div class="guideGrid">
       <div class="guideCard"><b>1. Pick sounds</b><br>Use the bank buttons. Drum banks, bass, chords, and synths can all be layered without changing the sounds you already recorded.</div>
-      <div class="guideCard"><b>2. Record a loop</b><br>Tap Record. It waits on standby until your first pad hit. Tap Record again to instantly reset and start a fresh loop.</div>
+      <div class="guideCard"><b>2. Record a loop</b><br>Tap REC. It waits on standby until your first pad hit. After the loop starts, tap REC to turn overdub on or off while the loop keeps playing.</div>
       <div class="guideCard"><b>3. Build while it plays</b><br>While the loop is playing, tap Record again to overdub more sounds. Quantize can be turned on or off.</div>
       <div class="guideCard"><b>4. Sample your mic</b><br>Turn on the mic, choose a pad, then record. You can rap, sing, beatbox, or capture a small song snippet. Use the silent 3 to 0 countdown or instant record.</div>
     </div>
@@ -428,12 +542,7 @@ select,input[type=text]{
       <div style="font-size:.72rem;color:#cfc4b0">Designed by Mario Garcia</div>
     </div>
     <div class="transport">
-      <button id="playBtn" class="pill">Play</button>
-      <button id="recordBtn" class="pill">Record</button>
-      <button id="quantBtn" class="pill">Quantize Off</button>
-      <button id="undoBtn" class="pill">Undo</button>
-      <button id="redoBtn" class="pill">Redo</button>
-      <button id="clearBtn" class="pill">Clear</button>
+      <button id="settingsBtn" class="pill settingsOpen">Settings</button>
     </div>
   </div>
 
@@ -442,7 +551,7 @@ select,input[type=text]{
   </div>
 
   <section class="main">
-    <aside class="panel">
+    <aside class="panel compactSide">
       <h3>Sound Banks</h3>
       <div id="banks" class="bankGrid"></div>
       <div class="control" style="margin-top:10px">
@@ -458,8 +567,16 @@ select,input[type=text]{
       <div class="panel">
         <h3>MPC Style Pads</h3>
         <div id="padGrid" class="padGrid"></div>
+        <div class="centerTransport">
+          <button id="recordBtn" class="pill">REC</button>
+          <button id="playBtn" class="pill">PLAY</button>
+          <button id="quantBtn" class="pill">Quant Off</button>
+          <button id="undoBtn" class="pill">Undo</button>
+          <button id="redoBtn" class="pill">Redo</button>
+          <button id="settingsBtn2" class="pill settingsOpen">Settings</button>
+        </div>
       </div>
-      <div class="panel">
+      <div class="panel micCompact">
         <h3>Mic Sampler</h3>
         <div class="smallGrid">
           <button id="micBtn" class="miniBtn">Mic Off</button>
@@ -475,8 +592,8 @@ select,input[type=text]{
       </div>
     </section>
 
-    <aside class="panel">
-      <h3>Beat Controls</h3>
+    <aside class="panel compactSide">
+      <h3>Quick Controls</h3>
       <div class="controls">
         <div class="control"><label>BPM <span id="bpmVal">92</span></label><input id="bpm" type="range" min="55" max="180" value="92"></div>
         <div class="control"><label>Loop Bars <span id="barsVal">2</span></label><input id="bars" type="range" min="1" max="8" value="2"></div>
@@ -500,6 +617,43 @@ select,input[type=text]{
         </div>
       </div>
     </aside>
+  </section>
+
+
+  <section id="settingsModal">
+    <div class="settingsBox">
+      <div class="settingsHead">
+        <h3>BEATphx Settings</h3>
+        <button id="closeSettings" class="pill">Close</button>
+      </div>
+      <div class="settingsGrid">
+        <div class="control"><label>BPM <span id="bpmValModal">92</span></label><input id="bpmModal" type="range" min="55" max="180" value="92"></div>
+        <div class="control"><label>Loop Bars <span id="barsValModal">2</span></label><input id="barsModal" type="range" min="1" max="8" value="2"></div>
+        <div class="control"><label>Pad Pitch <span id="pitchValModal">0 st</span></label><input id="pitchModal" type="range" min="-12" max="12" value="0"></div>
+        <div class="control"><label>Pad Delay <span id="padDelayValModal">0%</span></label><input id="padDelayModal" type="range" min="0" max="100" value="0"></div>
+        <div class="control"><label>Pad Reverb <span id="padVerbValModal">0%</span></label><input id="padVerbModal" type="range" min="0" max="100" value="0"></div>
+        <div class="control"><label>Master Filter <span id="filterValModal">100%</span></label><input id="filterModal" type="range" min="20" max="100" value="100"></div>
+        <div class="control"><label>Master Crush <span id="crushValModal">0%</span></label><input id="crushModal" type="range" min="0" max="100" value="0"></div>
+        <div class="control"><label>Metronome Vol <span id="metroValModal">40%</span></label><input id="metroVolModal" type="range" min="0" max="100" value="40"></div>
+        <div class="control"><label>Mic Sensitivity <span id="micSensValModal">70</span></label><input id="micSensModal" type="range" min="1" max="100" value="70"></div>
+        <div class="control"><label>Mic Gain <span id="micGainValModal">100%</span></label><input id="micGainModal" type="range" min="0" max="200" value="100"></div>
+        <div class="control">
+          <label>File Name</label>
+          <input id="fileNameModal" type="text" value="BEATphx_Mario_Garcia_Beat">
+        </div>
+        <div class="control">
+          <label>Extra Controls</label>
+          <div class="smallGrid">
+            <button id="metroBtnModal" class="miniBtn">Metronome Off</button>
+            <button id="countInBtnModal" class="miniBtn on">Count-In On</button>
+            <button id="clearBtnModal" class="miniBtn">Clear Loop</button>
+            <button id="exportBtnModal" class="miniBtn">Export MP3</button>
+            <button id="exportWavBtnModal" class="miniBtn">Export WAV</button>
+            <button id="closeSettings2" class="miniBtn">Done</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <div class="bottomMeter">
@@ -632,22 +786,43 @@ function renderPads(){
 }
 function updateSelected(){
   $('selectedPadLabel').textContent='Pad '+(selectedPad+1);
-  $('pitch').value = padSettings[selectedPad].pitch;
-  $('padDelay').value = padSettings[selectedPad].delay;
-  $('padVerb').value = padSettings[selectedPad].reverb;
+  if($('pitch')) $('pitch').value = padSettings[selectedPad].pitch;
+  if($('padDelay')) $('padDelay').value = padSettings[selectedPad].delay;
+  if($('padVerb')) $('padVerb').value = padSettings[selectedPad].reverb;
+  if($('pitchModal')) $('pitchModal').value = padSettings[selectedPad].pitch;
+  if($('padDelayModal')) $('padDelayModal').value = padSettings[selectedPad].delay;
+  if($('padVerbModal')) $('padVerbModal').value = padSettings[selectedPad].reverb;
   updateLabels();
 }
+function setText(id, value){ const el=$(id); if(el) el.textContent=value; }
+function setVal(id, value){ const el=$(id); if(el && document.activeElement!==el) el.value=value; }
 function updateLabels(){
-  $('bpmVal').textContent=bpm;
-  $('barsVal').textContent=bars;
-  $('pitchVal').textContent=padSettings[selectedPad].pitch+' st';
-  $('padDelayVal').textContent=padSettings[selectedPad].delay+'%';
-  $('padVerbVal').textContent=padSettings[selectedPad].reverb+'%';
-  $('filterVal').textContent=$('filter').value+'%';
-  $('crushVal').textContent=$('crush').value+'%';
-  $('metroVal').textContent=$('metroVol').value+'%';
-  $('micSensVal').textContent=$('micSens').value;
-  $('micGainVal').textContent=$('micGain').value+'%';
+  setText('bpmVal',bpm);
+  setText('barsVal',bars);
+  setText('pitchVal',padSettings[selectedPad].pitch+' st');
+  setText('padDelayVal',padSettings[selectedPad].delay+'%');
+  setText('padVerbVal',padSettings[selectedPad].reverb+'%');
+  setText('filterVal',$('filter') ? $('filter').value+'%' : '100%');
+  setText('crushVal',$('crush') ? $('crush').value+'%' : '0%');
+  setText('metroVal',$('metroVol') ? $('metroVol').value+'%' : '40%');
+  setText('micSensVal',$('micSens') ? $('micSens').value : '70');
+  setText('micGainVal',$('micGain') ? $('micGain').value+'%' : '100%');
+
+  setText('bpmValModal',bpm);
+  setText('barsValModal',bars);
+  setText('pitchValModal',padSettings[selectedPad].pitch+' st');
+  setText('padDelayValModal',padSettings[selectedPad].delay+'%');
+  setText('padVerbValModal',padSettings[selectedPad].reverb+'%');
+  setText('filterValModal',($('filterModal')?.value || $('filter')?.value || 100)+'%');
+  setText('crushValModal',($('crushModal')?.value || $('crush')?.value || 0)+'%');
+  setText('metroValModal',($('metroVolModal')?.value || $('metroVol')?.value || 40)+'%');
+  setText('micSensValModal',($('micSensModal')?.value || $('micSens')?.value || 70));
+  setText('micGainValModal',($('micGainModal')?.value || $('micGain')?.value || 100)+'%');
+
+  setVal('bpmModal',bpm); setVal('barsModal',bars);
+  setVal('pitchModal',padSettings[selectedPad].pitch);
+  setVal('padDelayModal',padSettings[selectedPad].delay);
+  setVal('padVerbModal',padSettings[selectedPad].reverb);
 }
 
 function hitPad(i, when=null, record=true, eventSound=null, settingsOverride=null){
@@ -876,29 +1051,37 @@ function metronomeClick(accent){
 function recordButton(){
   initAudio();
   if(audio.ctx.state==='suspended') audio.ctx.resume();
+
+  // Not playing and not recording: arm standby. First pad hit starts the loop.
   if(!isPlaying && !isRecording){
     loopLength=loopSeconds();
-    isRecording=true; waitingForFirstHit=true; overdubbing=false;
+    isRecording=true;
+    waitingForFirstHit=true;
+    overdubbing=false;
     $('recordBtn').classList.add('active');
-    setStatus('Record standby. The loop starts on your first pad hit.');
+    setStatus('REC standby. Recording starts on the first pad hit.');
     return;
   }
-  if(isPlaying && !isRecording){
-    isRecording=true; overdubbing=true;
-    $('recordBtn').classList.add('active');
-    setStatus('Overdub on. Add more pads from any bank.');
+
+  // After the first pad starts the loop, REC works as an overdub switch.
+  // Tap REC once to stop capturing new hits while the loop keeps playing.
+  // Tap REC again to overdub more sounds from any bank.
+  if(isPlaying){
+    isRecording=!isRecording;
+    waitingForFirstHit=false;
+    overdubbing=isRecording;
+    $('recordBtn').classList.toggle('active',isRecording);
+    setStatus(isRecording ? 'Overdub on. Add more sounds from any bank.' : 'Overdub off. Loop keeps playing.');
     return;
   }
+
+  // If still waiting and user taps REC again, cancel standby.
   if(isRecording && waitingForFirstHit){
-    loopEvents=[]; redoStack=[]; waitingForFirstHit=false; isRecording=false;
+    isRecording=false;
+    waitingForFirstHit=false;
+    overdubbing=false;
     $('recordBtn').classList.remove('active');
-    setStatus('Record reset. Tap Record again for standby.');
-    return;
-  }
-  if(isRecording && isPlaying){
-    isRecording=false; overdubbing=false;
-    $('recordBtn').classList.remove('active');
-    setStatus('Overdub off. Loop keeps playing.');
+    setStatus('REC standby canceled.');
   }
 }
 
@@ -964,7 +1147,10 @@ function redo(){
   if(redoStack.length){ loopEvents.push(redoStack.pop()); setStatus('Redo: restored last hit.'); }
 }
 function clearLoop(){
-  loopEvents=[]; redoStack=[]; stopPlayback(); setStatus('Loop cleared.');
+  loopEvents=[]; redoStack=[]; stopPlayback();
+  isRecording=false; waitingForFirstHit=false; overdubbing=false;
+  $('recordBtn').classList.remove('active');
+  setStatus('Loop cleared.');
 }
 
 async function exportAudio(asMp3=true){
@@ -979,7 +1165,7 @@ async function exportAudio(asMp3=true){
   // render with a temporary simple engine
   renderOffline(off, seconds);
   const buffer=await off.startRendering();
-  const name=($('fileName').value||'BEATphx_Beat').replace(/[^\w\-]+/g,'_');
+  const name=(($('fileNameModal')?.value || $('fileName')?.value || 'BEATphx_Beat')).replace(/[^\w\-]+/g,'_');
   if(asMp3 && window.lamejs){
     const mp3=audioBufferToMp3(buffer);
     downloadBlob(new Blob(mp3,{type:'audio/mpeg'}),name+'.mp3');
@@ -1099,30 +1285,65 @@ function drawMeter(){
 
 function bind(){
   $('launchBtn').onclick=()=>{$('guide').classList.add('show')};
-  $('cookBtn').onclick=()=>{initAudio();$('home').classList.add('hidden');$('guide').classList.remove('show');$('app').classList.add('show');setStatus('Ready. Tap Record, then hit a pad to start.');};
+  $('cookBtn').onclick=()=>{initAudio();$('home').classList.add('hidden');$('guide').classList.remove('show');$('app').classList.add('show');setStatus('Ready. Tap REC, then hit a pad to start.');};
+
   $('playBtn').onclick=()=> isPlaying ? stopPlayback() : startPlayback(true);
   $('recordBtn').onclick=recordButton;
-  $('quantBtn').onclick=()=>{quantize=!quantize;$('quantBtn').textContent=quantize?'Quantize On':'Quantize Off';$('quantBtn').classList.toggle('active',quantize); if(quantize) applyQuantizeToLoop();};
-  $('undoBtn').onclick=undo; $('redoBtn').onclick=redo; $('clearBtn').onclick=clearLoop;
+  $('quantBtn').onclick=()=>{quantize=!quantize;$('quantBtn').textContent=quantize?'Quant On':'Quant Off';$('quantBtn').classList.toggle('active',quantize); if(quantize) applyQuantizeToLoop();};
+  $('undoBtn').onclick=undo; $('redoBtn').onclick=redo; $('clearBtn').onclick=clearLoop; $('clearBtnModal').onclick=clearLoop;
+
+  const openSettings=()=>{$('settingsModal').classList.add('show'); updateLabels();};
+  const closeSettings=()=>{$('settingsModal').classList.remove('show');};
+  $('settingsBtn').onclick=openSettings;
+  $('settingsBtn2').onclick=openSettings;
+  $('closeSettings').onclick=closeSettings;
+  $('closeSettings2').onclick=closeSettings;
+  $('settingsModal').addEventListener('click',e=>{ if(e.target.id==='settingsModal') closeSettings(); });
+
   $('samplePad').onchange=e=>{selectedPad=+e.target.value;updateSelected()};
-  $('bpm').oninput=e=>{bpm=+e.target.value; updateLabels(); if(isPlaying){startMetronome()}};
-  $('bars').oninput=e=>{bars=+e.target.value; loopLength=loopSeconds(); updateLabels();};
-  $('pitch').oninput=e=>{padSettings[selectedPad].pitch=+e.target.value;updateLabels()};
-  $('padDelay').oninput=e=>{padSettings[selectedPad].delay=+e.target.value;updateLabels()};
-  $('padVerb').oninput=e=>{padSettings[selectedPad].reverb=+e.target.value;updateLabels()};
-  $('filter').oninput=e=>{updateLabels(); if(audio.filter) audio.filter.frequency.value=200 + (+e.target.value/100)*15800;};
-  $('crush').oninput=e=>{updateLabels(); if(audio.crush) audio.crush.curve=makeDistortionCurve(+e.target.value/100*80);};
-  $('metroVol').oninput=updateLabels;
-  $('metroBtn').onclick=()=>{metronome=!metronome;$('metroBtn').textContent=metronome?'Metronome On':'Metronome Off';$('metroBtn').classList.toggle('on',metronome); startMetronome();};
-  $('countInBtn').onclick=()=>{countIn=!countIn;$('countInBtn').textContent=countIn?'Count-In On':'Count-In Off';$('countInBtn').classList.toggle('on',countIn)};
+
+  const syncRange=(id,modalId,handler)=>{
+    const a=$(id), b=$(modalId);
+    const fn=e=>{
+      const value=+e.target.value;
+      if(a && e.target!==a) a.value=value;
+      if(b && e.target!==b) b.value=value;
+      handler(value);
+      updateLabels();
+    };
+    if(a) a.oninput=fn;
+    if(b) b.oninput=fn;
+  };
+  syncRange('bpm','bpmModal',v=>{bpm=v; if(isPlaying){startMetronome()}});
+  syncRange('bars','barsModal',v=>{bars=v; loopLength=loopSeconds();});
+  syncRange('pitch','pitchModal',v=>{padSettings[selectedPad].pitch=v;});
+  syncRange('padDelay','padDelayModal',v=>{padSettings[selectedPad].delay=v;});
+  syncRange('padVerb','padVerbModal',v=>{padSettings[selectedPad].reverb=v;});
+  syncRange('filter','filterModal',v=>{ if(audio.filter) audio.filter.frequency.value=200 + (v/100)*15800;});
+  syncRange('crush','crushModal',v=>{ if(audio.crush) audio.crush.curve=makeDistortionCurve(v/100*80);});
+  syncRange('metroVol','metroVolModal',v=>{});
+  syncRange('micSens','micSensModal',v=>{});
+  syncRange('micGain','micGainModal',v=>{});
+
+  $('metroBtn').onclick=()=>{metronome=!metronome;$('metroBtn').textContent=metronome?'Metronome On':'Metronome Off';$('metroBtn').classList.toggle('on',metronome); if($('metroBtnModal')){$('metroBtnModal').textContent=$('metroBtn').textContent;$('metroBtnModal').classList.toggle('on',metronome);} startMetronome();};
+  $('countInBtn').onclick=()=>{countIn=!countIn;$('countInBtn').textContent=countIn?'Count-In On':'Count-In Off';$('countInBtn').classList.toggle('on',countIn); if($('countInBtnModal')){$('countInBtnModal').textContent=$('countInBtn').textContent;$('countInBtnModal').classList.toggle('on',countIn);}};
+  $('metroBtnModal').onclick=()=>{$('metroBtn').click();};
+  $('countInBtnModal').onclick=()=>{$('countInBtn').click();};
+
   $('micBtn').onclick=enableMic;
   $('countBtn').onclick=()=>{sampleCountdown=!sampleCountdown;$('countBtn').textContent=sampleCountdown?'Countdown On':'Instant Record';$('countBtn').classList.toggle('on',sampleCountdown)};
   $('sampleBtn').onclick=startSampleRecord; $('stopSampleBtn').onclick=stopSampleRecord;
-  $('micSens').oninput=updateLabels; $('micGain').oninput=updateLabels;
+
   $('exportBtn').onclick=()=>exportAudio(true);
   $('exportWavBtn').onclick=()=>exportAudio(false);
+  $('exportBtnModal').onclick=()=>exportAudio(true);
+  $('exportWavBtnModal').onclick=()=>exportAudio(false);
+  $('fileNameModal').oninput=e=>{ if($('fileName')) $('fileName').value=e.target.value; };
+  if($('fileName')) $('fileName').oninput=e=>{ if($('fileNameModal')) $('fileNameModal').value=e.target.value; };
+
   document.addEventListener('visibilitychange',()=>{if(document.hidden) clearInterval(metroTimer)});
 }
+
 renderBanks(); renderPads(); updateLabels(); bind(); drawMeter();
 })();
 </script>
