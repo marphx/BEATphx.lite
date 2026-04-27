@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
 <title>BEATphx | Designed by Mario Garcia</title>
-<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pirata+One&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/lamejs@1.2.1/lame.min.js"></script>
 <style>
 :root{
@@ -23,7 +23,7 @@
   --purple:#a278ff;
   --orange:#ff9b43;
 }
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent} input[type=range]{touch-action:pan-x} button{touch-action:manipulation}
 html,body{
   margin:0;
   width:100%;
@@ -163,7 +163,7 @@ button{
 }
 h1{
   margin:0;
-  font-family:'UnifrakturMaguntia', Georgia, "Times New Roman", serif;
+  font-family:'Pirata One', Georgia, "Times New Roman", serif;
   font-weight:900;
   font-size:clamp(3.2rem,13vw,8rem);
   letter-spacing:.03em;
@@ -591,6 +591,100 @@ select,input[type=text]{
   color:#151008;
 }
 
+
+/* --- Clean stationary performance layout update --- */
+html,body{height:100dvh}
+#app{grid-template-rows:54px minmax(0,1fr) 82px}
+.topBar{min-height:54px}
+.logoSmall{font-size:1.35rem}
+.main{
+  height:100%;min-height:0;overflow:hidden;
+  grid-template-columns:minmax(180px,250px) minmax(360px,660px) minmax(190px,260px);
+  align-items:stretch;align-content:stretch;padding:8px;gap:8px;
+}
+.panel{border-radius:18px;padding:10px;min-height:0}
+.panel h3{font-size:.78rem;margin-bottom:7px}
+.compactSide{max-height:none;height:100%;overflow:auto}
+.bankGrid{gap:5px}
+.compactSide .bankBtn{padding:7px 8px;border-radius:11px;font-size:.78rem}
+.compactSide .bankBtn small{font-size:.62rem}
+.padArea{min-height:0;display:grid;grid-template-rows:minmax(0,1fr) auto;gap:8px;align-self:stretch}
+.padArea > .panel:first-child{display:flex;flex-direction:column;min-height:0}
+.padGrid{flex:1;min-height:0;grid-template-columns:repeat(3,1fr);gap:8px}
+.pad{
+  min-height:68px;
+  background:linear-gradient(145deg,rgba(245,245,245,.96),rgba(172,172,172,.94)),radial-gradient(circle at 28% 20%,rgba(255,255,255,.8),transparent 24%);
+  color:#111;border:1px solid rgba(255,255,255,.72);
+  box-shadow:0 7px 0 rgba(0,0,0,.55),inset 0 -12px 20px rgba(0,0,0,.16);
+}
+.pad span:first-child{color:#101010}.pad span:last-child{color:#333}
+.pad:active,.pad.playing{transform:translateY(4px);box-shadow:0 3px 0 rgba(0,0,0,.55),0 0 22px var(--padColor)}
+.centerTransport{grid-template-columns:repeat(6,1fr);gap:7px;margin-top:8px}
+.centerTransport .pill{padding:10px 6px;font-size:.72rem;border-radius:13px}
+#recordBtn{background:linear-gradient(135deg,#ff2f43,#b20b1a);color:#fff}
+#recordBtn.active{box-shadow:0 0 22px rgba(255,47,67,.72),inset 0 0 0 2px rgba(255,255,255,.38)}
+#playBtn{background:linear-gradient(135deg,#29d36f,#087d3b);color:#041007}
+#playBtn.active{box-shadow:0 0 22px rgba(41,211,111,.68),inset 0 0 0 2px rgba(255,255,255,.35)}
+#quantBtn{background:linear-gradient(135deg,#50d7ff,#1267a6)}
+#undoBtn,#redoBtn{background:linear-gradient(135deg,#a278ff,#4932a8)}
+#settingsBtn,#settingsBtn2{background:linear-gradient(135deg,#f0b84a,#ff7b37);color:#151008}
+.loopMeterWrap{padding:8px;margin-top:8px;border-radius:14px}
+.loopMeterTop{font-size:.66rem;margin-bottom:5px}
+.loopTrack{height:14px}.loopNeedle{height:22px}
+.loopModeRow{grid-template-columns:1fr 1fr;gap:6px;margin-top:7px}
+.loopModeRow .miniBtn{font-size:.66rem;padding:8px 5px}
+.micCompact{max-height:190px;overflow:auto}
+.micCompact .micStatus{margin:.45rem 0;font-size:.68rem}
+.micCompact .control{padding:7px}
+.micCompact .smallGrid{gap:6px}
+.control{padding:8px;border-radius:14px}.control label{font-size:.68rem}
+.controls{gap:7px}.smallGrid{gap:6px}.miniBtn{padding:8px 6px;font-size:.68rem}
+.bottomMeter{min-height:82px;padding-top:7px}
+#meterCanvas{width:min(640px,58vw);height:58px}
+.status{font-size:.68rem}
+#settingsModal{place-items:end center}
+.settingsBox{width:min(98vw,980px);max-height:76dvh;padding:14px;border-radius:20px 20px 0 0}
+.settingsGrid{grid-template-columns:repeat(3,minmax(190px,1fr));gap:8px}
+.settingsHead h3{font-size:1.25rem}
+.settingsHead .pill{background:linear-gradient(135deg,#f0b84a,#ff7b37);color:#151008}
+#recordDeck{width:min(62vw,440px)}
+h1{font-size:clamp(3.4rem,12vw,7.2rem);letter-spacing:.015em}
+@media (orientation:landscape) and (max-height:620px){
+  #app{grid-template-rows:44px minmax(0,1fr) 64px}
+  .topBar{min-height:44px;padding-top:5px;padding-bottom:5px}
+  .logoSmall{font-size:1.12rem}
+  .main{grid-template-columns:180px minmax(360px,1fr) 200px;padding:6px;gap:6px}
+  .panel{padding:7px;border-radius:14px}
+  .panel h3{font-size:.68rem;margin-bottom:5px}
+  .padGrid{gap:6px}
+  .pad{min-height:54px;padding:8px;border-radius:14px}
+  .pad span:first-child{font-size:.68rem}.pad span:last-child{font-size:.56rem}
+  .centerTransport{gap:5px;margin-top:6px}
+  .centerTransport .pill{padding:8px 4px;font-size:.62rem;border-radius:10px}
+  .loopMeterWrap{padding:6px;margin-top:6px}
+  .loopModeRow .miniBtn{padding:6px 4px;font-size:.58rem}
+  .micCompact{max-height:118px}
+  .micCompact .control,.micCompact .micStatus{display:none}
+  .compactSide .bankBtn{padding:5px 6px;font-size:.66rem}
+  .compactSide .bankBtn small{display:none}
+  .control{padding:6px}.controls{gap:5px}.smallGrid .miniBtn,.miniBtn{padding:6px 4px;font-size:.58rem}
+  .bottomMeter{min-height:64px;padding:5px 8px}
+  #meterCanvas{height:48px;width:60vw}.status{font-size:.6rem}
+  .breaker,.dj,.sprayerGame{display:none}
+}
+@media(max-width:900px) and (orientation:portrait){
+  #app{grid-template-rows:52px minmax(0,1fr) 76px}
+  .main{grid-template-columns:1fr;overflow:hidden;padding:8px 8px 84px}
+  .main aside.panel:first-child{order:2;max-height:118px;overflow:auto}
+  .padArea{order:1}
+  .main > aside.panel:last-child{display:none}
+  .pad{min-height:74px}
+  .centerTransport{grid-template-columns:repeat(3,1fr)}
+  .micCompact{max-height:150px}
+  .settingsGrid{grid-template-columns:1fr}
+  #meterCanvas{width:60vw;height:54px}
+}
+
 </style>
 </head>
 <body>
@@ -880,9 +974,10 @@ function setLoopMode(isFree){
   freeformLoop = isFree;
   ['freeLoopBtn','freeLoopBtnModal'].forEach(id=>{ if($(id)) $(id).classList.toggle('on',freeformLoop); });
   ['fixedLoopBtn','fixedLoopBtnModal'].forEach(id=>{ if($(id)) $(id).classList.toggle('on',!freeformLoop); });
-  if($('loopModeLabel')) $('loopModeLabel').textContent = freeformLoop ? 'Freeform Loop' : 'Fixed Loop';
+  if($('loopModeLabel')) $('loopModeLabel').textContent = freeformLoop ? 'Freeform Loop' : `Fixed Loop: ${bars} bar${bars>1?'s':''}`;
   if(!isPlaying && !isRecording) loopLength = freeformLoop ? 0 : loopSeconds();
-  setStatus(freeformLoop ? 'Freeform mode: REC starts on first pad, REC again closes the loop exactly there.' : 'Predetermined measures mode: loop length follows the Loop Bars setting.');
+  updateLoopTicks();
+  setStatus(freeformLoop ? 'Freeform mode: first pad starts, REC closes the loop exactly where you tap.' : 'Predetermined measures mode: loop length follows the Loop Bars setting.');
 }
 function setStatus(txt){$('status').textContent = txt}
 
@@ -937,11 +1032,11 @@ function updateLabels(){
   setText('pitchValModal',padSettings[selectedPad].pitch+' st');
   setText('padDelayValModal',padSettings[selectedPad].delay+'%');
   setText('padVerbValModal',padSettings[selectedPad].reverb+'%');
-  setText('filterValModal',($('filterModal')?.value || $('filter')?.value || 100)+'%');
-  setText('crushValModal',($('crushModal')?.value || $('crush')?.value || 0)+'%');
-  setText('metroValModal',($('metroVolModal')?.value || $('metroVol')?.value || 40)+'%');
-  setText('micSensValModal',($('micSensModal')?.value || $('micSens')?.value || 70));
-  setText('micGainValModal',($('micGainModal')?.value || $('micGain')?.value || 100)+'%');
+  setText('filterValModal',(($('filterModal') && $('filterModal').value) || ($('filter') && $('filter').value) || 100)+'%');
+  setText('crushValModal',(($('crushModal') && $('crushModal').value) || ($('crush') && $('crush').value) || 0)+'%');
+  setText('metroValModal',(($('metroVolModal') && $('metroVolModal').value) || ($('metroVol') && $('metroVol').value) || 40)+'%');
+  setText('micSensValModal',(($('micSensModal') && $('micSensModal').value) || ($('micSens') && $('micSens').value) || 70));
+  setText('micGainValModal',(($('micGainModal') && $('micGainModal').value) || ($('micGain') && $('micGain').value) || 100)+'%');
 
   setVal('bpmModal',bpm); setVal('barsModal',bars);
   setVal('pitchModal',padSettings[selectedPad].pitch);
@@ -1307,7 +1402,7 @@ async function exportAudio(asMp3=true){
   // render with a temporary simple engine
   renderOffline(off, seconds);
   const buffer=await off.startRendering();
-  const name=(($('fileNameModal')?.value || $('fileName')?.value || 'BEATphx_Beat')).replace(/[^\w\-]+/g,'_');
+  const name=((($('fileNameModal') && $('fileNameModal').value) || ($('fileName') && $('fileName').value) || 'BEATphx_Beat')).replace(/[^\w\-]+/g,'_');
   if(asMp3 && window.lamejs){
     const mp3=audioBufferToMp3(buffer);
     downloadBlob(new Blob(mp3,{type:'audio/mpeg'}),name+'.mp3');
@@ -1466,8 +1561,9 @@ function bind(){
 
   const openSettings=()=>{$('settingsModal').classList.add('show'); updateLabels();};
   const closeSettings=()=>{$('settingsModal').classList.remove('show');};
-  $('settingsBtn').onclick=openSettings;
-  $('settingsBtn2').onclick=openSettings;
+  const toggleSettings=()=>{$('settingsModal').classList.toggle('show'); updateLabels();};
+  $('settingsBtn').onclick=toggleSettings;
+  $('settingsBtn2').onclick=toggleSettings;
   $('closeSettings').onclick=closeSettings;
   $('closeSettings2').onclick=closeSettings;
   $('settingsModal').addEventListener('click',e=>{ if(e.target.id==='settingsModal') closeSettings(); });
@@ -1483,15 +1579,20 @@ function bind(){
 
   const syncRange=(id,modalId,handler)=>{
     const a=$(id), b=$(modalId);
-    const fn=e=>{
-      const value=+e.target.value;
-      if(a && e.target!==a) a.value=value;
-      if(b && e.target!==b) b.value=value;
-      handler(value);
+    const apply=(value, source)=>{
+      if(a && source!==a) a.value=value;
+      if(b && source!==b) b.value=value;
+      handler(+value);
       updateLabels();
     };
-    if(a) a.oninput=fn;
-    if(b) b.oninput=fn;
+    if(a){
+      a.addEventListener('input', e=>apply(e.target.value, a));
+      a.addEventListener('change', e=>apply(e.target.value, a));
+    }
+    if(b){
+      b.addEventListener('input', e=>apply(e.target.value, b));
+      b.addEventListener('change', e=>apply(e.target.value, b));
+    }
   };
   syncRange('bpm','bpmModal',v=>{bpm=v; if(isPlaying){startMetronome()}});
   syncRange('bars','barsModal',v=>{bars=v; if(!freeformLoop || !isPlaying) loopLength=loopSeconds(); updateLoopTicks();});
