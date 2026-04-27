@@ -85,44 +85,68 @@ button{
   aspect-ratio:1;
   border-radius:50%;
   background:
-    radial-gradient(circle,rgba(0,0,0,.1) 0 8%,rgba(0,0,0,.4) 8.5% 10%,transparent 10.5%),
-    repeating-radial-gradient(circle,rgba(255,255,255,.11) 0 2px,rgba(0,0,0,.2) 2px 8px),
+    radial-gradient(circle,rgba(255,227,160,.10) 0 3%,rgba(0,0,0,.4) 3.4% 5.8%,transparent 6.2%),
+    repeating-radial-gradient(circle,rgba(255,255,255,.12) 0 2px,rgba(0,0,0,.25) 2px 8px),
     radial-gradient(circle at 45% 45%,#19191f,#060609 64%,#000 100%);
   border:12px solid rgba(255,255,255,.08);
-  box-shadow:0 0 100px rgba(240,184,74,.16);
-  animation:spin 16s linear infinite;
-  opacity:.95;
+  box-shadow:0 0 100px rgba(240,184,74,.18), inset 0 0 60px rgba(0,0,0,.75);
+  animation:spin 18s linear infinite;
+  opacity:.96;
 }
 @keyframes spin{to{transform:rotate(360deg)}}
+
+/* Gold 16-bit City-of-Phoenix-inspired record label mark */
 .phxBird{
   position:absolute;
-  inset:11%;
+  inset:9%;
   border-radius:50%;
   background:
-    radial-gradient(circle,rgba(0,0,0,.12) 0 10%,transparent 10.5%),
-    conic-gradient(from 0deg,var(--gold),#ffd982,var(--gold),#b87922,var(--gold));
-  filter:drop-shadow(0 0 32px rgba(240,184,74,.68));
-  opacity:.92;
+    radial-gradient(circle at 50% 50%,rgba(0,0,0,.20) 0 8%,transparent 8.5%),
+    radial-gradient(circle at 50% 50%,#ffd982 0 57%,#e4a63a 58% 72%,#8b5a16 73% 100%);
+  box-shadow:
+    0 0 0 5px rgba(255,220,120,.18) inset,
+    0 0 0 14px rgba(0,0,0,.28) inset,
+    0 0 34px rgba(240,184,74,.72);
+  image-rendering:pixelated;
+  overflow:hidden;
+  opacity:.96;
 }
 .phxBird:before{
   content:"";
   position:absolute;
-  inset:14%;
-  background:#120b08;
-  clip-path:polygon(
-    50% 2%,58% 25%,79% 10%,69% 36%,96% 32%,74% 51%,
-    91% 73%,62% 63%,50% 97%,38% 63%,9% 73%,26% 51%,
-    4% 32%,31% 36%,21% 10%,42% 25%
-  );
+  inset:7%;
+  background:#14100b;
   opacity:.82;
+  image-rendering:pixelated;
+  clip-path:polygon(
+    50% 2%,
+    59% 5%, 66% 11%, 73% 19%, 78% 29%, 82% 41%,
+    93% 25%, 89% 43%, 100% 39%, 88% 54%, 96% 67%, 80% 62%,
+    70% 79%, 55% 91%, 38% 97%, 21% 95%, 8% 87%, 2% 75%,
+    17% 81%, 31% 81%, 44% 75%, 55% 64%, 62% 51%,
+    68% 38%, 67% 28%, 60% 19%, 49% 15%, 38% 18%,
+    30% 25%, 26% 36%, 41% 28%, 52% 29%, 58% 35%,
+    49% 38%, 39% 44%, 31% 54%, 26% 67%, 29% 77%,
+    18% 70%, 11% 59%, 10% 45%, 14% 31%, 23% 18%, 35% 8%
+  );
 }
 .phxBird:after{
   content:"";
   position:absolute;
-  inset:25%;
-  border:9px solid rgba(18,11,8,.82);
+  inset:0;
   border-radius:50%;
-  box-shadow:0 0 0 8px rgba(240,184,74,.23) inset;
+  background:
+    /* outside circular feather cuts */
+    radial-gradient(ellipse at 18% 54%, transparent 0 18%, #e7aa3d 18.5% 22%, transparent 22.5%),
+    radial-gradient(ellipse at 19% 30%, transparent 0 13%, #e7aa3d 13.5% 17%, transparent 17.5%),
+    radial-gradient(ellipse at 82% 26%, transparent 0 15%, #e7aa3d 15.5% 19%, transparent 19.5%),
+    radial-gradient(ellipse at 82% 65%, transparent 0 16%, #e7aa3d 16.5% 20%, transparent 20.5%),
+    /* inner head highlight and beak impression */
+    linear-gradient(148deg,transparent 0 45%,rgba(255,235,170,.68) 45.5% 48.5%,transparent 49% 100%),
+    radial-gradient(circle at 45% 23%,rgba(255,235,170,.76) 0 2.5%,transparent 3%);
+  mix-blend-mode:screen;
+  opacity:.72;
+  image-rendering:pixelated;
 }
 .homeCard{
   position:relative;
@@ -500,6 +524,73 @@ select,input[type=text]{
   #meterCanvas{width:62vw;height:62px}
 }
 
+
+.loopMeterWrap{
+  margin-top:10px;
+  background:rgba(0,0,0,.35);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:16px;
+  padding:10px;
+}
+.loopMeterTop{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  font-size:.72rem;
+  color:#ffe3aa;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  margin-bottom:7px;
+}
+.loopTrack{
+  position:relative;
+  width:100%;
+  height:18px;
+  border-radius:999px;
+  background:linear-gradient(90deg,rgba(80,215,255,.16),rgba(255,106,213,.14),rgba(240,184,74,.18));
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.12);
+}
+.loopFill{
+  position:absolute;
+  inset:0 auto 0 0;
+  width:0%;
+  background:linear-gradient(90deg,rgba(240,184,74,.9),rgba(255,123,55,.9));
+  box-shadow:0 0 18px rgba(240,184,74,.45);
+}
+.loopNeedle{
+  position:absolute;
+  top:-4px;
+  left:0%;
+  width:4px;
+  height:26px;
+  border-radius:4px;
+  background:#fff3c9;
+  box-shadow:0 0 12px rgba(255,243,201,.85);
+}
+.loopTicks{
+  position:absolute;
+  inset:0;
+  background:repeating-linear-gradient(90deg,rgba(255,255,255,.22) 0 1px,transparent 1px calc(25%));
+  opacity:.45;
+  pointer-events:none;
+}
+.loopModeRow{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:8px;
+}
+.loopModeRow .miniBtn{
+  padding:9px 7px;
+}
+.loopModeRow .miniBtn.on{
+  background:linear-gradient(135deg,var(--gold),var(--sun));
+  color:#151008;
+}
+
 </style>
 </head>
 <body>
@@ -528,7 +619,7 @@ select,input[type=text]{
       <div class="guideCard"><b>3. Build while it plays</b><br>While the loop is playing, tap Record again to overdub more sounds. Quantize can be turned on or off.</div>
       <div class="guideCard"><b>4. Sample your mic</b><br>Turn on the mic, choose a pad, then record. You can rap, sing, beatbox, or capture a small song snippet. Use the silent 3 to 0 countdown or instant record.</div>
     </div>
-    <p>Use pad effects for the pad you are playing. Use master effects for the whole mix. Name your file before saving. MP3 export uses an online encoder when available. If the encoder is blocked, the app saves a WAV backup.</p>
+    <p>Use Predetermined Measures for clean 1 to 8 bar loops, or Freeform Loop to capture the exact start and stop timing of your performance. Use pad effects for the pad you are playing. Use master effects for the whole mix. Name your file before saving. MP3 export uses an online encoder when available. If the encoder is blocked, the app saves a WAV backup.</p>
     <button id="cookBtn" class="bigButton">cook</button>
   </div>
 </section>
@@ -574,6 +665,21 @@ select,input[type=text]{
           <button id="undoBtn" class="pill">Undo</button>
           <button id="redoBtn" class="pill">Redo</button>
           <button id="settingsBtn2" class="pill settingsOpen">Settings</button>
+        </div>
+        <div class="loopMeterWrap">
+          <div class="loopMeterTop">
+            <span id="loopModeLabel">Fixed Loop</span>
+            <span id="loopTimeLabel">0.0 / 0.0 sec</span>
+          </div>
+          <div class="loopTrack">
+            <div class="loopFill" id="loopFill"></div>
+            <div class="loopTicks" id="loopTicks"></div>
+            <div class="loopNeedle" id="loopNeedle"></div>
+          </div>
+          <div class="loopModeRow">
+            <button id="fixedLoopBtn" class="miniBtn on">Predetermined Measures</button>
+            <button id="freeLoopBtn" class="miniBtn">Freeform Loop</button>
+          </div>
         </div>
       </div>
       <div class="panel micCompact">
@@ -629,6 +735,13 @@ select,input[type=text]{
       <div class="settingsGrid">
         <div class="control"><label>BPM <span id="bpmValModal">92</span></label><input id="bpmModal" type="range" min="55" max="180" value="92"></div>
         <div class="control"><label>Loop Bars <span id="barsValModal">2</span></label><input id="barsModal" type="range" min="1" max="8" value="2"></div>
+        <div class="control">
+          <label>Loop Recording Mode</label>
+          <div class="smallGrid">
+            <button id="fixedLoopBtnModal" class="miniBtn on">Measures</button>
+            <button id="freeLoopBtnModal" class="miniBtn">Freeform</button>
+          </div>
+        </div>
         <div class="control"><label>Pad Pitch <span id="pitchValModal">0 st</span></label><input id="pitchModal" type="range" min="-12" max="12" value="0"></div>
         <div class="control"><label>Pad Delay <span id="padDelayValModal">0%</span></label><input id="padDelayModal" type="range" min="0" max="100" value="0"></div>
         <div class="control"><label>Pad Reverb <span id="padVerbValModal">0%</span></label><input id="padVerbModal" type="range" min="0" max="100" value="0"></div>
@@ -715,7 +828,7 @@ let padSamples = new Array(6).fill(null);
 let padSettings = Array.from({length:6},()=>({pitch:0,delay:0,reverb:0}));
 let bpm = 92, bars = 2, loopLength = 0;
 let isPlaying = false, isRecording = false, waitingForFirstHit = false, overdubbing = false;
-let quantize = false, metronome = false, countIn = true, sampleCountdown = true;
+let quantize = false, metronome = false, countIn = true, sampleCountdown = true, freeformLoop = false, freeformStartTime = 0;
 let loopEvents = [], redoStack = [], startTime = 0, schedTimer = null, metroTimer = null, visualHits = [];
 let lastExportURL = null;
 
@@ -760,6 +873,17 @@ function makeDistortionCurve(amount){
 }
 function now(){return audio.ctx ? audio.ctx.currentTime : 0}
 function loopSeconds(){return (60/bpm)*4*bars}
+function activeLoopSeconds(){
+  return loopLength || loopSeconds();
+}
+function setLoopMode(isFree){
+  freeformLoop = isFree;
+  ['freeLoopBtn','freeLoopBtnModal'].forEach(id=>{ if($(id)) $(id).classList.toggle('on',freeformLoop); });
+  ['fixedLoopBtn','fixedLoopBtnModal'].forEach(id=>{ if($(id)) $(id).classList.toggle('on',!freeformLoop); });
+  if($('loopModeLabel')) $('loopModeLabel').textContent = freeformLoop ? 'Freeform Loop' : 'Fixed Loop';
+  if(!isPlaying && !isRecording) loopLength = freeformLoop ? 0 : loopSeconds();
+  setStatus(freeformLoop ? 'Freeform mode: REC starts on first pad, REC again closes the loop exactly there.' : 'Predetermined measures mode: loop length follows the Loop Bars setting.');
+}
 function setStatus(txt){$('status').textContent = txt}
 
 function renderBanks(){
@@ -809,7 +933,7 @@ function updateLabels(){
   setText('micGainVal',$('micGain') ? $('micGain').value+'%' : '100%');
 
   setText('bpmValModal',bpm);
-  setText('barsValModal',bars);
+  setText('barsValModal',bars); updateLoopTicks();
   setText('pitchValModal',padSettings[selectedPad].pitch+' st');
   setText('padDelayValModal',padSettings[selectedPad].delay+'%');
   setText('padVerbValModal',padSettings[selectedPad].reverb+'%');
@@ -835,17 +959,21 @@ function hitPad(i, when=null, record=true, eventSound=null, settingsOverride=nul
   visualHits.push({pad:i,time:performance.now(),color:colors[i]});
   if(record && isRecording){
     if(waitingForFirstHit){
-      loopLength=loopSeconds();
       startTime=now();
+      freeformStartTime=startTime;
+      loopLength=freeformLoop ? 0 : loopSeconds();
       waitingForFirstHit=false;
-      isPlaying=true;
-      $('playBtn').classList.add('active');
-      setStatus('Recording started. Tap Record again to overdub, or tap it while standby to reset.');
-      startScheduler();
-      startMetronome();
+      isPlaying = !freeformLoop;
+      $('playBtn').classList.toggle('active',isPlaying);
+      setStatus(freeformLoop ? 'Freeform recording started. Tap REC again exactly where the loop should end.' : 'Recording started. REC now toggles overdub on/off while the loop plays.');
+      if(!freeformLoop){
+        startScheduler();
+        startMetronome();
+      }
     }
-    const pos = ((t - startTime) % loopLength + loopLength) % loopLength;
-    const qpos = quantize ? quantizeTime(pos) : pos;
+    let pos = t - startTime;
+    if(loopLength > 0) pos = ((pos % loopLength) + loopLength) % loopLength;
+    const qpos = (quantize && loopLength > 0) ? quantizeTime(pos) : pos;
     loopEvents.push({time:qpos,pad:i,sound:bankSound,settings:{...settings}});
     redoStack=[];
   }
@@ -857,6 +985,7 @@ function flashPad(i){
   setTimeout(()=>el.classList.remove('playing'),130);
 }
 function quantizeTime(pos){
+  if(!loopLength) return pos;
   const step = (60/bpm)/4; // sixteenth note
   return Math.round(pos/step)*step % loopLength;
 }
@@ -983,7 +1112,7 @@ function startPlayback(withCount=false){
   if(audio.ctx.state==='suspended') audio.ctx.resume();
   if(loopEvents.length===0){setStatus('No loop yet. Tap Record and play pads first.');return}
   const go=()=>{
-    loopLength=loopSeconds();
+    if(!freeformLoop || !loopLength) loopLength=loopSeconds();
     startTime=now()+.05;
     isPlaying=true;
     $('playBtn').classList.add('active');
@@ -1054,18 +1183,30 @@ function recordButton(){
 
   // Not playing and not recording: arm standby. First pad hit starts the loop.
   if(!isPlaying && !isRecording){
-    loopLength=loopSeconds();
+    loopLength = freeformLoop ? 0 : loopSeconds();
     isRecording=true;
     waitingForFirstHit=true;
     overdubbing=false;
     $('recordBtn').classList.add('active');
-    setStatus('REC standby. Recording starts on the first pad hit.');
+    setStatus(freeformLoop ? 'Freeform REC standby. First pad starts recording. Tap REC again to close the loop.' : 'REC standby. Recording starts on the first pad hit.');
     return;
   }
 
-  // After the first pad starts the loop, REC works as an overdub switch.
-  // Tap REC once to stop capturing new hits while the loop keeps playing.
-  // Tap REC again to overdub more sounds from any bank.
+  // Freeform: after first hit, REC closes the loop at the exact tap point.
+  if(freeformLoop && isRecording && !waitingForFirstHit && !isPlaying){
+    loopLength = Math.max(0.35, now() - freeformStartTime);
+    isPlaying = true;
+    isRecording = false;
+    overdubbing = false;
+    $('playBtn').classList.add('active');
+    $('recordBtn').classList.remove('active');
+    startScheduler();
+    startMetronome();
+    setStatus('Freeform loop closed exactly where you tapped REC. Tap REC again to overdub.');
+    return;
+  }
+
+  // Once a loop exists and is playing, REC toggles overdub on/off.
   if(isPlaying){
     isRecording=!isRecording;
     waitingForFirstHit=false;
@@ -1149,6 +1290,7 @@ function redo(){
 function clearLoop(){
   loopEvents=[]; redoStack=[]; stopPlayback();
   isRecording=false; waitingForFirstHit=false; overdubbing=false;
+  loopLength = freeformLoop ? 0 : loopSeconds();
   $('recordBtn').classList.remove('active');
   setStatus('Loop cleared.');
 }
@@ -1157,7 +1299,7 @@ async function exportAudio(asMp3=true){
   initAudio();
   if(loopEvents.length===0){setStatus('Nothing to export yet. Record a loop first.');return}
   setStatus('Rendering export...');
-  const seconds=loopSeconds()*2;
+  const seconds=(loopLength || loopSeconds())*2;
   const rate=44100;
   const off=new OfflineAudioContext(2,Math.ceil(seconds*rate),rate);
   const old=audio.ctx;
@@ -1177,7 +1319,7 @@ async function exportAudio(asMp3=true){
 }
 function renderOffline(ctx, seconds){
   loopEvents.forEach(ev=>{
-    for(let base=0;base<seconds;base+=loopSeconds()){
+    for(let base=0;base<seconds;base+=(loopLength || loopSeconds())){
       offlineSound(ctx,ev.sound,ev.pad,base+ev.time,ev.settings,padSamples[ev.pad]);
     }
   });
@@ -1247,6 +1389,36 @@ function downloadBlob(blob,filename){
   const a=document.createElement('a'); a.href=lastExportURL; a.download=filename; document.body.appendChild(a); a.click(); a.remove();
 }
 
+
+function updateLoopTicks(){
+  const ticks=$('loopTicks');
+  if(!ticks) return;
+  if(freeformLoop){
+    ticks.style.background='repeating-linear-gradient(90deg,rgba(255,255,255,.18) 0 1px,transparent 1px 10%)';
+  }else{
+    const pct = 100 / Math.max(1,bars*4);
+    ticks.style.background=`repeating-linear-gradient(90deg,rgba(255,255,255,.22) 0 1px,transparent 1px ${pct}%)`;
+  }
+}
+function updateLoopProgress(){
+  const fill=$('loopFill'), needle=$('loopNeedle'), label=$('loopTimeLabel');
+  if(!fill || !needle || !label) return;
+  let len = activeLoopSeconds();
+  let elapsed = 0;
+  if(isPlaying && len > 0){
+    elapsed = ((now() - startTime) % len + len) % len;
+  }else if(isRecording && waitingForFirstHit){
+    elapsed = 0;
+    len = freeformLoop ? 0 : loopSeconds();
+  }
+  const pct = len > 0 ? Math.max(0,Math.min(100,(elapsed/len)*100)) : 0;
+  fill.style.width = pct + '%';
+  needle.style.left = pct + '%';
+  label.textContent = `${elapsed.toFixed(1)} / ${len ? len.toFixed(1) : 'free'} sec`;
+  if($('loopModeLabel')) $('loopModeLabel').textContent = freeformLoop ? 'Freeform Loop' : `Fixed Loop: ${bars} bar${bars>1?'s':''}`;
+  requestAnimationFrame(updateLoopProgress);
+}
+
 function drawMeter(){
   const canvas=$('meterCanvas'), ctx=canvas.getContext('2d'), w=canvas.width,h=canvas.height;
   ctx.clearRect(0,0,w,h);
@@ -1300,6 +1472,13 @@ function bind(){
   $('closeSettings2').onclick=closeSettings;
   $('settingsModal').addEventListener('click',e=>{ if(e.target.id==='settingsModal') closeSettings(); });
 
+  const fixedMode=()=>setLoopMode(false);
+  const freeMode=()=>setLoopMode(true);
+  $('fixedLoopBtn').onclick=fixedMode;
+  $('freeLoopBtn').onclick=freeMode;
+  $('fixedLoopBtnModal').onclick=fixedMode;
+  $('freeLoopBtnModal').onclick=freeMode;
+
   $('samplePad').onchange=e=>{selectedPad=+e.target.value;updateSelected()};
 
   const syncRange=(id,modalId,handler)=>{
@@ -1315,7 +1494,7 @@ function bind(){
     if(b) b.oninput=fn;
   };
   syncRange('bpm','bpmModal',v=>{bpm=v; if(isPlaying){startMetronome()}});
-  syncRange('bars','barsModal',v=>{bars=v; loopLength=loopSeconds();});
+  syncRange('bars','barsModal',v=>{bars=v; if(!freeformLoop || !isPlaying) loopLength=loopSeconds(); updateLoopTicks();});
   syncRange('pitch','pitchModal',v=>{padSettings[selectedPad].pitch=v;});
   syncRange('padDelay','padDelayModal',v=>{padSettings[selectedPad].delay=v;});
   syncRange('padVerb','padVerbModal',v=>{padSettings[selectedPad].reverb=v;});
@@ -1344,7 +1523,7 @@ function bind(){
   document.addEventListener('visibilitychange',()=>{if(document.hidden) clearInterval(metroTimer)});
 }
 
-renderBanks(); renderPads(); updateLabels(); bind(); drawMeter();
+renderBanks(); renderPads(); updateLabels(); bind(); setLoopMode(false); drawMeter(); updateLoopProgress();
 })();
 </script>
 </body>
